@@ -7,12 +7,14 @@ import com.ParcialJava.ParcialSpring.Service.InterfacesServicios.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+@Service
 public abstract class BaseServiceIMP<Entidad extends Base, PostDTO, UpdateDTO, RespuestaDTO> implements BaseService<Entidad, PostDTO, UpdateDTO, RespuestaDTO> {
 
     @Autowired

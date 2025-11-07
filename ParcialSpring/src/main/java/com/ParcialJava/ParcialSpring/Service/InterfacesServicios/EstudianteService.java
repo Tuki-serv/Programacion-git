@@ -10,4 +10,18 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface EstudianteService extends BaseService<Estudiante, EstudiantePostDTO, EstudianteUpdateDTO, EstudianteRespuestaDTO> {
+
+    ResponseEntity<?> registrar(EstudiantePostDTO dto);
+    ResponseEntity<?> editar(Long id, EstudianteUpdateDTO dto);
+    void eliminar(Long id);
+    ResponseEntity<?> reactivar(Long id);
+
+    List<EstudianteRespuestaDTO> listarTodos();
+    List<EstudianteRespuestaDTO> listarActivos();
+    List<EstudianteRespuestaDTO> listarEliminados();
+
+    ResponseEntity<?> listarTodosLosCursos(Long id);
+    ResponseEntity<?> listarCursosActivos(Long id);
+    ResponseEntity<?> listarCursosEliminados(Long id);
+
 }
