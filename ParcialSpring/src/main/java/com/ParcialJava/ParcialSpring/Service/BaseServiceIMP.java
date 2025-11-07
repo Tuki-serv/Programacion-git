@@ -82,7 +82,7 @@ public abstract class BaseServiceIMP<Entidad extends Base, PostDTO, UpdateDTO, R
     }
 
 
-    protected List<RespuestaDTO> construirListaDeRespuestasDTO(List<Entidad> entidades, Function<Long, List<?>> buscarRelacionados) {
+    protected List<RespuestaDTO> construirListaDeRespuestasDTO(List<Entidad> entidades, Function<Long, List<? extends Object>> buscarRelacionados) {
         List<RespuestaDTO> listaRespuestas = new ArrayList<>();
         for (Entidad entidad : entidades) {
             RespuestaDTO dto = construirRespuestaDTO(entidad, buscarRelacionados);
