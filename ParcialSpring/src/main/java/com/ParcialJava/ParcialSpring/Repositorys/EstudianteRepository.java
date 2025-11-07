@@ -16,7 +16,5 @@ public interface EstudianteRepository extends BaseRepository<Estudiante, Long>{
     // Lista todos los estudiantes eliminados por id de curso
     List<Estudiante> findByCursosIdAndEliminadoTrueOrderByIdAsc(Long cursoId);
 
-
-    boolean existsByEmail(String email);
     boolean existsByMatricula(String matricula);
 }

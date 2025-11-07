@@ -12,6 +12,7 @@ import com.ParcialJava.ParcialSpring.Repositorys.CursoRepository;
 import com.ParcialJava.ParcialSpring.Repositorys.ProfesorRepository;
 import com.ParcialJava.ParcialSpring.Service.InterfacesServicios.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class CursoServiceIMP extends BaseServiceIMP<Curso, CursoPostDTO, CursoUp
     @Autowired
     CursoMapper cursoMapper;
     @Autowired
+    @Lazy
     EstudianteServiceIMP estudianteServiceIMP;
 
 /*---------------------------------------------------------------------------------------------------------------------*/
@@ -184,7 +186,7 @@ public class CursoServiceIMP extends BaseServiceIMP<Curso, CursoPostDTO, CursoUp
         }
 
         curso.vincularConEstudiante(estudiante);
-
+        cursoRepository.save(curso);
         return ResponseEntity.ok("Estudiante asignado correctamente");
     }
 }

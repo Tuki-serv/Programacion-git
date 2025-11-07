@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cursos")
+@RequestMapping("/api/cursos")
 public class CursoController {
 
     @Autowired
-    private CursoService cursoService;
+    CursoService cursoService;
 
     // Listar todos los cursos con sus estudiantes
     @GetMapping
