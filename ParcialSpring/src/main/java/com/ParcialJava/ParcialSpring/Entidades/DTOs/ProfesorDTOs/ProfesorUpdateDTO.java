@@ -1,13 +1,10 @@
 package com.ParcialJava.ParcialSpring.Entidades.DTOs.ProfesorDTOs;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 
-public record ProfesorPostDTO(
-        @NotBlank(message = "El nombre no puede estar vacío")
+public record ProfesorUpdateDTO(
         String nombre,
 
-        @NotBlank(message = "El email no puede estar vacío")
         @Email(message = "El email debe tener un formato válido")
         String email
 ) {}

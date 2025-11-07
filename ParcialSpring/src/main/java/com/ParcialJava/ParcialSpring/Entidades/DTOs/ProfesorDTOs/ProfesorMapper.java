@@ -1,11 +1,16 @@
 package com.ParcialJava.ParcialSpring.Entidades.DTOs.ProfesorDTOs;
 
 import com.ParcialJava.ParcialSpring.Entidades.DTOs.BaseMapper;
+import com.ParcialJava.ParcialSpring.Entidades.DTOs.CursoDTOs.CursoRespuestaDTO;
 import com.ParcialJava.ParcialSpring.Entidades.Profesor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ProfesorMapper implements BaseMapper<Profesor,ProfesorPostDTO, ProfesorRespuestaDTO > {
+@Component
+public class ProfesorMapper implements BaseMapper<Profesor, ProfesorPostDTO, ProfesorUpdateDTO, ProfesorRespuestaDTO> {
+
     @Override
     public Profesor dtoToEntity(ProfesorPostDTO dto) {
         Profesor profesor = new Profesor();
@@ -15,12 +20,12 @@ public class ProfesorMapper implements BaseMapper<Profesor,ProfesorPostDTO, Prof
     }
 
     @Override
-    public ProfesorRespuestaDTO entityToDTO(Profesor entity) {
-        return new ProfesorRespuestaDTO(entity.getId(), entity.getNombre(), entity.getEmail());
+    public ProfesorRespuestaDTO entityToDTO(Profesor profesor) {
+        return new ProfesorRespuestaDTO(profesor.getId(), profesor.getNombre(), profesor.getEmail(), null);
     }
 
     @Override
-    public void actualizarEntidad(Profesor profesor, ProfesorPostDTO dto) {
+    public void actualizarEntidad(Profesor profesor, ProfesorUpdateDTO dto) {
         if (dto.nombre() != null && !dto.nombre().isBlank() && !dto.nombre().equals(profesor.getNombre())) {
             profesor.setNombre(dto.nombre());
         }
@@ -30,6 +35,8 @@ public class ProfesorMapper implements BaseMapper<Profesor,ProfesorPostDTO, Prof
         }
     }
 
-
-
+    @Override
+    public ProfesorRespuestaDTO entityToDTO(Profesor profesor, List<?> listaDeCursos) {
+        return new ProfesorRespuestaDTO(profesor.getId(),profesor.getNombre(),profesor.getEmail(),(List<CursoRespuestaDTO>) listaDeCursos);
+    }
 }
