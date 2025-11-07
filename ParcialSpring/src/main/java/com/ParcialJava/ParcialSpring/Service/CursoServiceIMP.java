@@ -6,6 +6,7 @@ import com.ParcialJava.ParcialSpring.Entidades.DTOs.CursoDTOs.CursoPostDTO;
 import com.ParcialJava.ParcialSpring.Entidades.DTOs.CursoDTOs.CursoRespuestaDTO;
 import com.ParcialJava.ParcialSpring.Entidades.DTOs.CursoDTOs.CursoUpdateDTO;
 import com.ParcialJava.ParcialSpring.Entidades.DTOs.EstudiantesDTOs.EstudianteRespuestaDTO;
+import com.ParcialJava.ParcialSpring.Entidades.Estudiante;
 import com.ParcialJava.ParcialSpring.Entidades.Profesor;
 import com.ParcialJava.ParcialSpring.Repositorys.CursoRepository;
 import com.ParcialJava.ParcialSpring.Repositorys.ProfesorRepository;
@@ -172,9 +173,16 @@ public class CursoServiceIMP extends BaseServiceIMP<Curso, CursoPostDTO, CursoUp
         return ResponseEntity.ok(actualizado);
     }
 
-    @Override
-    public void asignarEstudiante(Long cursoId, Long estudianteId) {
+    public ResponseEntity<?> asignarEstudiante(Long cursoId, Long estudianteId) {
+        Curso curso = buscarPorId(cursoId);
+        Estudiante estudiante = estudianteServiceIMP.buscarPorId(estudianteId);
 
+        if (curso.getEliminado() || estudiante.getEliminado()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Curso o estudiante eliminado");
+        }
+
+        curso.vincularConEstudiante(estudiante);
+
+        return ResponseEntity.ok("Estudiante asignado correctamente");
     }
-
 }

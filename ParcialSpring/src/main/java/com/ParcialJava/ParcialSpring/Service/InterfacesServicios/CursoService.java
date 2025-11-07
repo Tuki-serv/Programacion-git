@@ -12,5 +12,4 @@ public interface CursoService extends BaseService<Curso, CursoPostDTO , CursoUpd
     List<CursoRespuestaDTO> listarTodos();
     ResponseEntity<?> registrar(CursoPostDTO dto);
     ResponseEntity<?> editar(Long id, CursoUpdateDTO dto);
-    void asignarEstudiante(Long cursoId, Long estudianteId);
 }
